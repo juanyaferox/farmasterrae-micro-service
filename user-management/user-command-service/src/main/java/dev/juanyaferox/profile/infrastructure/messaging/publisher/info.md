@@ -1,0 +1,1 @@
+boca del microservicio. anuncian y envian notificaciones (eventos) a otros microservicios.

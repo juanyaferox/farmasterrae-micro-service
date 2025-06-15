@@ -1,0 +1,1 @@
+capa de validaciones para record, por ejemplo record Email(String email){constructor{validaciones}}

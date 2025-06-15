@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=farmasterrae_query'
+      - 'MONGO_INITDB_ROOT_PASSWORD=j#T@s271105'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - '27017'
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=farmasterrae_command'
+      - 'MYSQL_PASSWORD=j#T@s221201'
+      - 'MYSQL_ROOT_PASSWORD=j#T@s271105'
+      - 'MYSQL_USER=farmasterrae_admin'
+    ports:
+      - '3306'
+  rabbitmq:
+    image: 'rabbitmq:latest'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=j#T@s271105'
+      - 'RABBITMQ_DEFAULT_USER=farmasterrae_rabbit'
+    ports:
+      - '5672'
