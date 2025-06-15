@@ -30,20 +30,9 @@ public class CreateUserUseCase {
 
         if (userRepository.findByEmail(command.getEmail()).isPresent())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email ya registrado");
-
-        // No es la mejor solución, pero la única manteniendo el record.
-        String encodedPassword = passwordEncoder.encode(command.getPassword());
-        User finalUser = new User(
-                null,
-                command.getUsername(),
-                command.getFullName(),
-                encodedPassword,
-                command.getEmail(),
-                command.getPhone(),
-                command.getAddress(),
-                null,
-                null
-        );
-        userRepository.save(finalUser);
+        
+        User user = userMapper.commandToDomain(command)
+                .withPassword(passwordEncoder.encode(command.getPassword()));
+        userRepository.save(user);
     }
 }

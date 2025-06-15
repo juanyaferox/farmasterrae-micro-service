@@ -1,6 +1,6 @@
 package dev.juanyaferox.user.domain.model;
 
-import dev.juanyaferox.profile.infrastructure.data.entity.Profile;
+import dev.juanyaferox.profile.domain.model.Profile;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,4 +16,17 @@ public record User(
         LocalDateTime deletedAt,
         Profile profile
 ) {
+    public User withPassword(String newPassword) {
+        return new User(
+                this.id,
+                this.username,
+                this.fullName,
+                newPassword,
+                this.email,
+                this.phone,
+                this.address,
+                this.deletedAt,
+                this.profile
+        );
+    }
 }
