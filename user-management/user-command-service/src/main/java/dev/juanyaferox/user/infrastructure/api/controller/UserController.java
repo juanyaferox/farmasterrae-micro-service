@@ -1,4 +1,27 @@
 package dev.juanyaferox.user.infrastructure.api.controller;
 
+import dev.juanyaferox.user.application.usecase.CreateUserUseCase;
+import dev.juanyaferox.user.infrastructure.api.dto.CreateUserApiRequest;
+import dev.juanyaferox.user.infrastructure.api.mapper.UserMapper;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping ("/api/users")
 public class UserController {
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Autowired
+    CreateUserUseCase createUserUseCase;
+
+    @PostMapping
+    @ResponseStatus (HttpStatus.CREATED)
+    public void createUser(@Valid @RequestBody CreateUserApiRequest request) {
+        var command = userMapper.createUserCommandFromCreateUserApiRequest(request);
+        createUserUseCase.execute(command);
+    }
 }

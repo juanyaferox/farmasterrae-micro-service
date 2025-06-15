@@ -1,21 +1,21 @@
 package dev.juanyaferox.user.infrastructure.data.repository;
 
-import dev.juanyaferox.user.infrastructure.data.entity.User;
+import dev.juanyaferox.user.infrastructure.data.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface JpaUserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface JpaUserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
 
-    Optional<User> findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
 
-    Optional<User> findByEmail(String email);
+    Optional<UserEntity> findByEmail(String email);
 
     boolean existsByUsername(String username);
 
     boolean existsByEmail(String email);
 
-    List<User> findAllByProfileType(String type);
+    List<UserEntity> findAllByProfileType(String type);
 }

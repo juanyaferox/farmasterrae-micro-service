@@ -1,15 +1,49 @@
 package dev.juanyaferox.user.application.usecase;
 
 import dev.juanyaferox.user.application.dto.CreateUserCommand;
-import dev.juanyaferox.user.infrastructure.data.entity.User;
+import dev.juanyaferox.user.application.mapper.UserMapper;
+import dev.juanyaferox.user.domain.model.User;
+import dev.juanyaferox.user.domain.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CreateUserUseCase {
 
-    public void createUser(CreateUserCommand command) {
-        // Lógica para crear un nuevo usuario
+    @Autowired
+    UserMapper userMapper;
 
-        User user = new User();
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
+
+    public void execute(CreateUserCommand command) {
+
+        if (userRepository.findByUsername(command.getUsername()).isPresent())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuario ya registrado");
+
+        if (userRepository.findByEmail(command.getEmail()).isPresent())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email ya registrado");
+
+        // No es la mejor solución, pero la única manteniendo el record.
+        String encodedPassword = passwordEncoder.encode(command.getPassword());
+        User finalUser = new User(
+                null,
+                command.getUsername(),
+                command.getFullName(),
+                encodedPassword,
+                command.getEmail(),
+                command.getPhone(),
+                command.getAddress(),
+                null,
+                null
+        );
+        userRepository.save(finalUser);
     }
 }

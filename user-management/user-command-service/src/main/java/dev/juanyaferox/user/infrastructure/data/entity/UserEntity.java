@@ -1,16 +1,14 @@
 package dev.juanyaferox.user.infrastructure.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.juanyaferox.profile.infrastructure.data.entity.Profile;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.Where;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -26,7 +24,7 @@ import java.util.UUID;
 @EqualsAndHashCode (onlyExplicitlyIncluded = true)
 @ToString (onlyExplicitlyIncluded = true)
 @Where (clause = "deletedAt IS NULL") // Deprecated, pero más sencillo
-public class User implements UserDetails, Serializable {
+public class UserEntity implements UserDetails, Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -35,7 +33,7 @@ public class User implements UserDetails, Serializable {
     @GeneratedValue
     @EqualsAndHashCode.Include
     @ToString.Include
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
+    @Column (name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     UUID id;
 
     @Column (unique = true)
@@ -58,7 +56,7 @@ public class User implements UserDetails, Serializable {
     @JoinColumn (name = "profile_id", nullable = false)
     Profile profile;
 
-//    @OneToMany (mappedBy = "userModified", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    //    @OneToMany (mappedBy = "userModified", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 //    @JsonIgnore
 //    @ToString.Exclude
 //    List<Product> productList;
