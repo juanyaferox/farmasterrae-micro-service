@@ -30,10 +30,10 @@ public class UserEntity implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.UUID)
+    @Column (name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     @EqualsAndHashCode.Include
     @ToString.Include
-    @Column (name = "id", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     UUID id;
 
     @Column (unique = true)
