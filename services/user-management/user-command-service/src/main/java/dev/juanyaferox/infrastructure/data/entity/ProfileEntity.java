@@ -3,7 +3,6 @@ package dev.juanyaferox.infrastructure.data.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @Table (name = "profiles")
-public class ProfileEntity implements GrantedAuthority, Serializable {
+public class ProfileEntity implements /*GrantedAuthority,*/ Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -30,8 +29,8 @@ public class ProfileEntity implements GrantedAuthority, Serializable {
     @ToString.Exclude
     List<UserEntity> userList;
 
-    @Override
-    public String getAuthority() {
-        return type;
-    }
+//    @Override
+//    public String getAuthority() {
+//        return type;
+//    }
 }

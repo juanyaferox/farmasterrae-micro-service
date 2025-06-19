@@ -5,7 +5,7 @@ import dev.juanyaferox.domain.model.User;
 import org.mapstruct.Mapper;
 
 @Mapper (componentModel = "spring")
-public interface UserMapper {
+public interface UserCommandMapper {
 
     User commandToDomain(CreateUserCommand command);
 }

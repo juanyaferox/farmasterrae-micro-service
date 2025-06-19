@@ -2,63 +2,63 @@ server:
   port: 8080
 
 spring:
-  config:
-    import: "configserver:http://localhost:8888"
   application:
     name: api-gateway
   cloud:
     gateway:
-      routes:
-        # Auth Service Route
-        - id: auth-service-route
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/auth/**
+      server:
+        webflux:
+          routes:
+            # Auth Service Route
+            - id: auth-service-route
+              uri: lb://auth-service
+              predicates:
+                - Path=/api/auth/**
 
-        # Notification Service Route
-        - id: notification-service-route
-          uri: lb://notification-service
-          predicates:
-            - Path=/api/notification/**
+            # Notification Service Route
+            - id: notification-service-route
+              uri: lb://notification-service
+              predicates:
+                - Path=/api/notification/**
 
-        # Product Catalog Service Routes
-        - id: product-command-service-route
-          uri: lb://product-command-service
-          predicates:
-            - Path=/api/product/**
-            - Method=POST,PUT,DELETE
+            # Product Catalog Service Routes
+            - id: product-command-service-route
+              uri: lb://product-command-service
+              predicates:
+                - Path=/api/product/**
+                - Method=POST,PUT,DELETE
 
-        - id: product-query-service-route
-          uri: lb://product-query-service
-          predicates:
-            - Path=/api/product/**
-            - Method=GET
+            - id: product-query-service-route
+              uri: lb://product-query-service
+              predicates:
+                - Path=/api/product/**
+                - Method=GET
 
-        # Sales Service Routes
-        - id: sales-command-service-route
-          uri: lb://sales-command-service
-          predicates:
-            - Path=/api/sales/**
-            - Method=POST,PUT,DELETE
+            # Sales Service Routes
+            - id: sales-command-service-route
+              uri: lb://sales-command-service
+              predicates:
+                - Path=/api/sales/**
+                - Method=POST,PUT,DELETE
 
-        - id: sales-query-service-route
-          uri: lb://sales-query-service
-          predicates:
-            - Path=/api/sales/**
-            - Method=GET
+            - id: sales-query-service-route
+              uri: lb://sales-query-service
+              predicates:
+                - Path=/api/sales/**
+                - Method=GET
 
-        # User Management Service Routes
-        - id: user-command-service-route
-          uri: lb://user-command-service
-          predicates:
-            - Path=/api/user/**
-            - Method=POST,PUT,DELETE
+            # User Management Service Routes
+            - id: user-command-service-route
+              uri: lb://user-command-service
+              predicates:
+                - Path=/api/user/**
+                - Method=POST,PUT,DELETE
 
-        - id: user-query-service-route
-          uri: lb://user-query-service
-          predicates:
-            - Path=/api/user/**
-            - Method=GET
+            - id: user-query-service-route
+              uri: lb://user-query-service
+              predicates:
+                - Path=/api/user/**
+                - Method=GET
 
 eureka:
   client:

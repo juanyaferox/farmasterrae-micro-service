@@ -2,7 +2,7 @@ package dev.juanyaferox.infrastructure.api.controller;
 
 import dev.juanyaferox.application.core.usecase.user.CreateUserUseCase;
 import dev.juanyaferox.infrastructure.api.dto.CreateUserApiRequest;
-import dev.juanyaferox.infrastructure.api.mapper.UserMapper;
+import dev.juanyaferox.infrastructure.api.mapper.UserApiMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    UserMapper userMapper;
+    UserApiMapper userMapper;
 
     @Autowired
     CreateUserUseCase createUserUseCase;

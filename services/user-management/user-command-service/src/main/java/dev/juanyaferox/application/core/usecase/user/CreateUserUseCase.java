@@ -4,23 +4,22 @@ import dev.juanyaferox.application.core.providers.UserRepositoryPort;
 import dev.juanyaferox.application.core.usecase.user.dto.CreateUserCommand;
 import dev.juanyaferox.application.exception.EmailAlreadyExistsException;
 import dev.juanyaferox.application.exception.UserAlreadyExistsException;
-import dev.juanyaferox.application.mapper.UserMapper;
+import dev.juanyaferox.application.mapper.UserCommandMapper;
 import dev.juanyaferox.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateUserUseCase {
 
     @Autowired
-    UserMapper userMapper;
+    UserCommandMapper userMapper;
 
     @Autowired
     UserRepositoryPort userRepositoryPort;
 
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
+//    @Autowired
+//    BCryptPasswordEncoder passwordEncoder;
 
     public void execute(CreateUserCommand command) {
 
@@ -30,8 +29,8 @@ public class CreateUserUseCase {
         if (userRepositoryPort.findByEmail(command.getEmail()).isPresent())
             throw new EmailAlreadyExistsException("Email ya registrado");
 
-        User user = userMapper.commandToDomain(command)
-                .withPassword(passwordEncoder.encode(command.getPassword()));
+        User user = userMapper.commandToDomain(command);
+        //.withPassword(passwordEncoder.encode(command.getPassword()));
 
         userRepositoryPort.save(user);
     }

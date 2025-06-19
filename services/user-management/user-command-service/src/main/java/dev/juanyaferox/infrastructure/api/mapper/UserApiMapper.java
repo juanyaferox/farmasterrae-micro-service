@@ -6,7 +6,7 @@ import dev.juanyaferox.infrastructure.api.dto.CreateUserApiRequest;
 import org.mapstruct.Mapper;
 
 @Mapper (componentModel = "spring")
-public interface UserMapper {
+public interface UserApiMapper {
 
     CreateUserCommand createUserCommandFromCreateUserApiRequest(CreateUserApiRequest request);
 }
