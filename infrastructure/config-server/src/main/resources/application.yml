@@ -13,11 +13,6 @@ spring:
           search-locations: classpath:/config-files
         default-label: main
 
-logging:
-  level:
-    org.springframework.cloud.config: DEBUG
-    org.springframework.web: DEBUG
-
 eureka:
   client:
     enabled: false
