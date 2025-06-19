@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native # Usamos el perfil "native" para leer del sistema de archivos
+  cloud:
+    config:
+      server:
+        native:
+          # Apuntamos a una carpeta 'config-files' en la raíz del proyecto
+          search-locations: file:./common/config-files
+
+eureka:
+  client:
+    enabled: false

@@ -2,6 +2,8 @@ server:
   port: 8080
 
 spring:
+  config:
+    import: "configserver:http://localhost:8888"
   application:
     name: api-gateway
   cloud:
@@ -49,14 +51,14 @@ spring:
         - id: user-command-service-route
         - uri: lb://user-command-service
         - predicates:
-          - Path=/api/user/**
-          - Method=POST,PUT,DELETE
+            - Path=/api/user/**
+            - Method=POST,PUT,DELETE
 
         - id: user-query-service-route
         - uri: lb://user-query-service
         - predicates:
-          - Path=/api/user/**
-          - Method=GET
+            - Path=/api/user/**
+            - Method=GET
 
 eureka:
   client:
