@@ -1,6 +1,7 @@
 package dev.juanyaferox.infrastructure.api.mapper;
 
-import dev.juanyaferox.application.dto.CreateUserCommand;
+
+import dev.juanyaferox.application.core.usecase.user.dto.CreateUserCommand;
 import dev.juanyaferox.infrastructure.api.dto.CreateUserApiRequest;
 import org.mapstruct.Mapper;
 

@@ -1,7 +1,7 @@
 package dev.juanyaferox.application.core.usecase.user;
 
 import dev.juanyaferox.application.core.providers.UserRepositoryPort;
-import dev.juanyaferox.application.dto.CreateUserCommand;
+import dev.juanyaferox.application.core.usecase.user.dto.CreateUserCommand;
 import dev.juanyaferox.application.exception.EmailAlreadyExistsException;
 import dev.juanyaferox.application.exception.UserAlreadyExistsException;
 import dev.juanyaferox.application.mapper.UserMapper;
