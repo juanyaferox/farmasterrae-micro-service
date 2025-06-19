@@ -1,1 +1,0 @@
-oreja del micro servicio. escuchan y reaccionan a eventos de otros microservicios.

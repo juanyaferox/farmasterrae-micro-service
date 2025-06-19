@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>juanyaferox.dev</groupId>
+    <groupId>dev.juanyaferox</groupId>
     <artifactId>farmasterrae</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>api-gateway</module>
-        <module>common-library</module>
-        <module>auth-service</module>
-        <module>notification-service</module>
-        <module>product-catalog/product-command-service</module>
-        <module>product-catalog/product-query-service</module>
-        <module>sales/sales-command-service</module>
-        <module>sales/sales-query-service</module>
-        <module>user-management/user-command-service</module>
-        <module>user-management/user-query-service</module>
+        <module>common/common-core</module>
+
+        <module>infrastructure/api-gateway</module>
+        <module>infrastructure/config-server</module>
+        <module>infrastructure/eureka-server</module>
+
+        <module>services/auth-service</module>
+        <module>services/notification-service</module>
+        <module>services/product-catalog/product-command-service</module>
+        <module>services/product-catalog/product-query-service</module>
+        <module>services/sales/sales-command-service</module>
+        <module>services/sales/sales-query-service</module>
+        <module>services/user-management/user-command-service</module>
+        <module>services/user-management/user-query-service</module>
     </modules>
 
     <properties>
