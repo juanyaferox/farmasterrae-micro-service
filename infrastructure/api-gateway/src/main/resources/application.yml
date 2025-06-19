@@ -1,3 +1,8 @@
 spring:
+  application:
+    name: api-gateway
   config:
     import: "configserver:http://localhost:8888"
+    fail-fast: false
+  profiles:
+    active: default

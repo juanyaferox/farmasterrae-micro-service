@@ -5,13 +5,18 @@ spring:
   application:
     name: config-server
   profiles:
-    active: native # Usamos el perfil "native" para leer del sistema de archivos
+    active: native
   cloud:
     config:
       server:
         native:
-          # Apuntamos a una carpeta 'config-files' en la raíz del proyecto
-          search-locations: file:./common/config-files
+          search-locations: classpath:/config-files
+        default-label: main
+
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
+    org.springframework.web: DEBUG
 
 eureka:
   client:
