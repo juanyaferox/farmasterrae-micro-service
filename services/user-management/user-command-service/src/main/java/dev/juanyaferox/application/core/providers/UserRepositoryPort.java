@@ -3,6 +3,7 @@ package dev.juanyaferox.application.core.providers;
 
 import dev.juanyaferox.domain.model.User;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,4 +17,6 @@ public interface UserRepositoryPort {
     void save(User user);
 
     void delete(User user);
+
+    List<User> findAllByProfileType(String type);
 }

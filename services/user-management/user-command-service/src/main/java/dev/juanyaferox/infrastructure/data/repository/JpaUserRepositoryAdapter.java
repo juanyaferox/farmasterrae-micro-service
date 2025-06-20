@@ -5,12 +5,10 @@ import dev.juanyaferox.domain.model.User;
 import dev.juanyaferox.infrastructure.data.entity.UserEntity;
 import dev.juanyaferox.infrastructure.data.mapper.UserPersistenceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,12 +43,13 @@ public class JpaUserRepositoryAdapter implements UserRepositoryPort {
 
     @Override
     public void delete(User user) {
-        String profileType = user.profile().type();
-        if (Objects.equals(profileType, "ADMIN")
-                && userRepository.findAllByProfileType(profileType).size() <= 1)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tiene que existir al menos un administrador");
-
         userRepository.save(anonymize(userPersistenceMapper.userToUserEntity(user)));
+    }
+
+    @Override
+    public List<User> findAllByProfileType(String type) {
+        return userRepository.findAllByProfileType(type)
+                .stream().map(userPersistenceMapper::userEntityToUser).toList();
     }
 
     private UserEntity anonymize(UserEntity u) {
