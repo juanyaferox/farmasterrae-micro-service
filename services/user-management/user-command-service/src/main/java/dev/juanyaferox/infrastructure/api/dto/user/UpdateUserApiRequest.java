@@ -1,23 +1,22 @@
-package dev.juanyaferox.infrastructure.api.dto;
+package dev.juanyaferox.infrastructure.api.dto.user;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CreateUserApiRequest(
-        @NotBlank (message = "El usuario no puede estar vacío")
+import java.util.UUID;
+
+public record UpdateUserApiRequest(
+        UUID id,
+
         @Size (min = 6, max = 20)
         String username,
 
-        @NotBlank
         @Size (min = 6, max = 30)
         String password,
 
-        @NotBlank
         @Size (min = 3, max = 120)
         String fullName,
 
-        @NotBlank (message = "El correo no puede estar vacío")
         @Email (message = "Debe ser un correo")
         @Size (min = 3, max = 100)
         String email,
@@ -28,8 +27,6 @@ public record CreateUserApiRequest(
         @Size (max = 100)
         String address,
 
-        @NotBlank (message = "El usuario debe estar asignado a un tipo")
         String type
 ) {
-
 }

@@ -12,9 +12,10 @@ spring:
     username: sa
     password:
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create-drop # Crea el esquema al iniciar y lo borra al apagar
+      ddl-auto: create
 
 eureka:
   client:

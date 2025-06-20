@@ -17,7 +17,7 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode (onlyExplicitlyIncluded = true)
 @ToString (onlyExplicitlyIncluded = true)
-@Where (clause = "deletedAt IS NULL") // Deprecated, pero más sencillo
+@Where (clause = "DELETED_AT IS NULL") // Deprecated, pero más sencillo
 public class UserEntity implements /*UserDetails,*/ Serializable {
 
     @Serial
@@ -30,24 +30,29 @@ public class UserEntity implements /*UserDetails,*/ Serializable {
     @ToString.Include
     UUID id;
 
-    @Column (unique = true)
+    @Column (name = "USERNAME", unique = true)
     String username;
 
+    @Column (name = "FULL_NAME")
     String fullName;
 
+    @Column (name = "PASSWORD")
     String password;
 
-    @Column (unique = true)
+    @Column (name = "EMAIL", unique = true)
     String email;
 
+    @Column (name = "PHONE")
     String phone;
 
+    @Column (name = "ADDRESS")
     String address;
 
+    @Column (name = "DELETED_AT")
     LocalDateTime deletedAt;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn (name = "profile_id", nullable = false)
+    @JoinColumn (name = "profile_id", nullable = true)
     ProfileEntity profile;
 
     //    @OneToMany (mappedBy = "userModified", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

@@ -27,4 +27,18 @@ public record User(
                 this.profile
         );
     }
+
+    public User withProfile(Profile profile) {
+        return new User(
+                this.id,
+                this.username,
+                this.fullName,
+                this.password,
+                this.email,
+                this.phone,
+                this.address,
+                this.deletedAt,
+                profile
+        );
+    }
 }

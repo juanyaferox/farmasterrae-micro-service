@@ -29,7 +29,7 @@ public class CreateUserUseCase {
         if (userRepositoryPort.findByEmail(command.getEmail()).isPresent())
             throw new EmailAlreadyExistsException("Email ya registrado");
 
-        User user = userMapper.commandToDomain(command);
+        User user = userMapper.createCommandToDomain(command);
         //.withPassword(passwordEncoder.encode(command.getPassword()));
 
         userRepositoryPort.save(user);

@@ -4,12 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus (HttpStatus.BAD_REQUEST)
-public class EmailAlreadyExistsException extends RuntimeException {
-    public EmailAlreadyExistsException(String message) {
+public class ProfileNotFoundException extends RuntimeException {
+    public ProfileNotFoundException(String message) {
         super(message);
     }
 
-    public EmailAlreadyExistsException() {
-        super("El email ya existe");
+    public ProfileNotFoundException() {
+        super("No se ha podido asignar un perfil");
     }
 }
