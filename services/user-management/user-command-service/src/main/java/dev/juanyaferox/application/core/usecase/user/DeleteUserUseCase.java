@@ -1,8 +1,8 @@
 package dev.juanyaferox.application.core.usecase.user;
 
 import dev.juanyaferox.application.core.providers.UserRepositoryPort;
-import dev.juanyaferox.application.exception.AdminAtLeastOneException;
-import dev.juanyaferox.application.exception.UserNotFoundException;
+import dev.juanyaferox.application.exception.profile.AdminAtLeastOneException;
+import dev.juanyaferox.application.exception.user.UserNotFoundException;
 import dev.juanyaferox.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

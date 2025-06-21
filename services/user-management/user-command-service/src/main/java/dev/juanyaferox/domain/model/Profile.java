@@ -1,9 +1,7 @@
 package dev.juanyaferox.domain.model;
 
-import java.util.UUID;
-
 public record Profile(
-        UUID id,
+        Long id,
         String type,
         String description
 ) {

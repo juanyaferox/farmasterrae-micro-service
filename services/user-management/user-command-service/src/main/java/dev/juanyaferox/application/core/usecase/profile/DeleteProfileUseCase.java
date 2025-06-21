@@ -2,7 +2,9 @@ package dev.juanyaferox.application.core.usecase.profile;
 
 import dev.juanyaferox.application.core.providers.ProfileRepositoryPort;
 import dev.juanyaferox.application.core.providers.UserRepositoryPort;
-import dev.juanyaferox.application.exception.ProfileNotFoundException;
+import dev.juanyaferox.application.exception.profile.AdminRoleCantBeDeletedException;
+import dev.juanyaferox.application.exception.profile.ClientRoleCantBeDeletedException;
+import dev.juanyaferox.application.exception.profile.ProfileNotFoundException;
 import dev.juanyaferox.domain.model.Profile;
 import dev.juanyaferox.domain.model.User;
 import jakarta.transaction.Transactional;
@@ -21,9 +23,17 @@ public class DeleteProfileUseCase {
     @Transactional
     public void execute(Long idToDelete, Long idToAssign) {
 
-        Profile oldProfile = profileRepository.findById(idToDelete).orElseThrow(ProfileNotFoundException::new);
+        Profile oldProfile = profileRepository.findById(idToDelete)
+                .orElseThrow(ProfileNotFoundException::new);
 
-        Profile newProfile = profileRepository.findById(idToAssign).orElseThrow(ProfileNotFoundException::new);
+        Profile newProfile = profileRepository.findById(idToAssign)
+                .orElseThrow(ProfileNotFoundException::new);
+
+        if (oldProfile.type().equals("ADMIN"))
+            throw new AdminRoleCantBeDeletedException();
+
+        if (oldProfile.type().equals("CLIENT"))
+            throw new ClientRoleCantBeDeletedException();
 
         // Se reasignan los perfiles de los usuarios a uno nuevo
         List<User> users = userRepository.findAllByProfileId(idToDelete).stream().map(

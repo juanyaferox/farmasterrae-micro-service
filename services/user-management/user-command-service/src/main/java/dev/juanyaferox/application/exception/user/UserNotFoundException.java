@@ -1,4 +1,4 @@
-package dev.juanyaferox.application.exception;
+package dev.juanyaferox.application.exception.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

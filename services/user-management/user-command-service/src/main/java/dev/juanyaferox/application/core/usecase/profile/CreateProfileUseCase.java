@@ -2,8 +2,8 @@ package dev.juanyaferox.application.core.usecase.profile;
 
 import dev.juanyaferox.application.core.providers.ProfileRepositoryPort;
 import dev.juanyaferox.application.core.usecase.profile.dto.CreateProfileCommand;
-import dev.juanyaferox.application.exception.ProfileDescriptionAlreadyExistsException;
-import dev.juanyaferox.application.exception.ProfileTypeAlreadyExistsException;
+import dev.juanyaferox.application.exception.profile.ProfileDescriptionAlreadyExistsException;
+import dev.juanyaferox.application.exception.profile.ProfileTypeAlreadyExistsException;
 import dev.juanyaferox.application.mapper.ProfileCommandMapper;
 import dev.juanyaferox.domain.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;

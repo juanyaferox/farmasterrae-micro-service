@@ -2,9 +2,9 @@ package dev.juanyaferox.application.core.usecase.user;
 
 import dev.juanyaferox.application.core.providers.UserRepositoryPort;
 import dev.juanyaferox.application.core.usecase.user.dto.UpdateUserCommand;
-import dev.juanyaferox.application.exception.EmailAlreadyExistsException;
-import dev.juanyaferox.application.exception.UserAlreadyExistsException;
-import dev.juanyaferox.application.exception.UserNotFoundException;
+import dev.juanyaferox.application.exception.user.EmailAlreadyExistsException;
+import dev.juanyaferox.application.exception.user.UserAlreadyExistsException;
+import dev.juanyaferox.application.exception.user.UserNotFoundException;
 import dev.juanyaferox.application.mapper.UserCommandMapper;
 import dev.juanyaferox.domain.model.User;
 import jakarta.transaction.Transactional;

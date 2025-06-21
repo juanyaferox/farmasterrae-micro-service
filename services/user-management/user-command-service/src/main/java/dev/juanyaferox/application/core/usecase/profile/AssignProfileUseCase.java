@@ -2,13 +2,14 @@ package dev.juanyaferox.application.core.usecase.profile;
 
 import dev.juanyaferox.application.core.providers.ProfileRepositoryPort;
 import dev.juanyaferox.application.core.providers.UserRepositoryPort;
-import dev.juanyaferox.application.core.usecase.profile.dto.AssignProfileCommand;
-import dev.juanyaferox.application.exception.ProfileNotFoundException;
-import dev.juanyaferox.application.exception.UserNotFoundException;
+import dev.juanyaferox.application.exception.profile.ProfileNotFoundException;
+import dev.juanyaferox.application.exception.user.UserNotFoundException;
 import dev.juanyaferox.domain.model.Profile;
 import dev.juanyaferox.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class AssignProfileUseCase {
@@ -19,12 +20,12 @@ public class AssignProfileUseCase {
     @Autowired
     UserRepositoryPort userRepository;
 
-    public void execute(AssignProfileCommand command) {
+    public void execute(UUID idUser, Long idProfile) {
 
-        Profile profile = profileRepository.findByType(command.getProfileType()).orElseThrow(ProfileNotFoundException::new);
-        User user = userRepository.findById(command.getIdUser()).orElseThrow(UserNotFoundException::new)
+        Profile profile = profileRepository.findById(idProfile).orElseThrow(ProfileNotFoundException::new);
+        User user = userRepository.findById(idUser).orElseThrow(UserNotFoundException::new)
                 .withProfile(profile);
-        
+
         userRepository.save(user);
     }
 }
