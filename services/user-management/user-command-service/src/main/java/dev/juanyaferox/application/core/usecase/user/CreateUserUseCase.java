@@ -6,6 +6,7 @@ import dev.juanyaferox.application.exception.EmailAlreadyExistsException;
 import dev.juanyaferox.application.exception.UserAlreadyExistsException;
 import dev.juanyaferox.application.mapper.UserCommandMapper;
 import dev.juanyaferox.domain.model.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class CreateUserUseCase {
 //    @Autowired
 //    BCryptPasswordEncoder passwordEncoder;
 
+    @Transactional
     public void execute(CreateUserCommand command) {
 
         if (userRepositoryPort.findByUsername(command.getUsername()).isPresent())

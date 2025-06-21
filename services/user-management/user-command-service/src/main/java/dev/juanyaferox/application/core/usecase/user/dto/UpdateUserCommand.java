@@ -30,6 +30,4 @@ public class UpdateUserCommand {
 
     @Size (max = 100)
     String address;
-
-    String type;
 }

@@ -7,9 +7,12 @@ import dev.juanyaferox.application.exception.UserAlreadyExistsException;
 import dev.juanyaferox.application.exception.UserNotFoundException;
 import dev.juanyaferox.application.mapper.UserCommandMapper;
 import dev.juanyaferox.domain.model.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+@Service
 public class UpdateUserUseCase {
 
     @Autowired
@@ -18,7 +21,8 @@ public class UpdateUserUseCase {
     @Autowired
     UserCommandMapper userMapper;
 
-    public void updateUserById(UpdateUserCommand command) throws ResponseStatusException {
+    @Transactional
+    public void execute(UpdateUserCommand command) throws ResponseStatusException {
 
         User user = userRepository.findById(command.getId()).orElseThrow(UserNotFoundException::new);
 
@@ -30,9 +34,6 @@ public class UpdateUserUseCase {
                 && userRepository.findByEmail(command.getEmail()).isPresent())
             throw new EmailAlreadyExistsException();
 
-        if (command.getType() == null) {
-            command.setType(user.profile().type());
-        }
         userMapper.updateCommandToDomain(command, user);
         userRepository.save(user);
     }

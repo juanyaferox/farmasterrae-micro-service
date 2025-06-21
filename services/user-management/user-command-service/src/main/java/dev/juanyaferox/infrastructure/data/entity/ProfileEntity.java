@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table (name = "profiles")
+@Table (name = "profiles", indexes = @Index (name = "idx_profile_type", columnList = "type"))
 public class ProfileEntity implements /*GrantedAuthority,*/ Serializable {
 
     @Serial

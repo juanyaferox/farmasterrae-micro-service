@@ -28,8 +28,7 @@ public class UserController {
 
     @Autowired
     DeleteUserUseCase deleteUserUseCase;
-
-
+    
     @PostMapping
     @ResponseStatus (HttpStatus.CREATED)
     public void createUser(@Valid @RequestBody CreateUserApiRequest request) {
@@ -41,12 +40,12 @@ public class UserController {
     @ResponseStatus (HttpStatus.ACCEPTED)
     public void updateUser(@Valid @RequestBody UpdateUserApiRequest request) {
         var command = userMapper.updateUserCommandFromUpdateUserApiRequest(request);
-        updateUserUseCase.updateUserById(command);
+        updateUserUseCase.execute(command);
     }
 
     @DeleteMapping
     @ResponseStatus (HttpStatus.ACCEPTED)
     public void deleteUser(@RequestParam UUID id) {
-        deleteUserUseCase.deleteUserById(id);
+        deleteUserUseCase.execute(id);
     }
 }

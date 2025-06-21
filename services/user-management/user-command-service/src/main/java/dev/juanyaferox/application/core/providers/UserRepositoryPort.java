@@ -16,7 +16,11 @@ public interface UserRepositoryPort {
 
     void save(User user);
 
+    void saveAll(List<User> users);
+
     void delete(User user);
 
     List<User> findAllByProfileType(String type);
+
+    List<User> findAllByProfileId(Long id);
 }
